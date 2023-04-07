@@ -1,16 +1,15 @@
 <template>
-  <HelloWorld />
+  <MainGame />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import HelloWorld from '../components/HelloWorld.vue';
+import MainGame from '@/components/MainGame.vue'
 
 export default defineComponent({
   name: 'HomeView',
-
   components: {
-    HelloWorld,
+      MainGame
   },
 });
 </script>
