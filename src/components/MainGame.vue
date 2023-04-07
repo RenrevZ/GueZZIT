@@ -57,8 +57,8 @@
               </div>
             </span>
             
+            <transition name="alert-transition">
             <span v-if="message">
-              
                 <span>
                     <v-alert
                       color="#FB8C00"
@@ -73,6 +73,7 @@
                     </v-alert>
                 </span>
             </span>
+            </transition>
             
             <span v-if="message =='CORRECT!!'" class="d-flex flex-column justify-start align-start mb-5 white">
                 <span>
@@ -84,6 +85,20 @@
             </span>
   
             <span v-if="GuestNow">
+            <span v-if="message =='CORRECT!!'">
+                <v-text-field
+                label="Input your guest number"
+                hint="Choose a number from 1-100"
+                v-model="guestNum"
+                variant="outlined"
+                class="rounded-pill white"
+                max="100"
+                min="1"
+                type="number"
+                disabled
+                ></v-text-field>
+            </span>
+            <span v-else>
               <v-text-field
                 label="Input your guest number"
                 hint="Choose a number from 1-100"
@@ -94,6 +109,7 @@
                 min="1"
                 type="number"
               ></v-text-field>
+            </span>
   
               <div class="d-flex justify-space-between align-center white">
                 <div>
@@ -109,15 +125,15 @@
          
           <v-col cols="12" sm="6" md="4" class="white">
               <span v-if="!Playing">
-                <v-btn type="submit" color="#FB8C00" @click="Play" block rounded="xl" size="x-large">Play</v-btn>
+                <v-btn type="submit" color="#FB8C00" class="white" @click="Play" block rounded="xl" size="x-large">Play</v-btn>
               </span>
   
               <span v-if="message =='CORRECT!!'">
-                <v-btn @click="playAgain" color="#FB8C00" block rounded="xl" size="x-large">Play Again</v-btn>
+                <v-btn @click="playAgain" color="#FB8C00" class="white" block rounded="xl" size="x-large">Play Again</v-btn>
               </span>
   
               <span v-if="Playing && message !='CORRECT!!'">
-                <v-btn type="submit" color="#FB8C00" block rounded="xl" size="x-large">Guest</v-btn>
+                <v-btn type="submit" color="#FB8C00" class="white" block rounded="xl" size="x-large">Guest</v-btn>
               </span>
           </v-col>
         </div>
@@ -278,15 +294,48 @@
     }
   }
   </script>
-  <style>
-    .white{
+<style>
+.white{
       color: aliceblue;
-    }
-    .icon{
+}
+.icon{
       font-size: 100px;
-    }
-    .alert{
-      transition: 0.5s;
-    }
+}
+
+.alert-transition-enter-active {
+  animation: alert-scale-in 0.3s ease-out;
+}
+
+.alert-transition-leave-active {
+  animation: alert-scale-out 0.3s ease-in;
+}
+
+@keyframes alert-scale-in {
+  0% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes alert-scale-out {
+  0% {
+    transform: scale(2);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
   </style>
   
