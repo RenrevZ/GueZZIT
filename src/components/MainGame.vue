@@ -266,7 +266,7 @@
 
             //=== Regenerate new random number
             randomNumber.value = Math.floor(Math.random() * 100) + 1;
-            Guest() // call the validation
+            Guest()
         }
   
         console.log(randomNumber.value)
